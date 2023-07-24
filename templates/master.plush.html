@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="fixed dark">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="UTF-8">
+		<meta name="csrf-param" content="authenticity_token" />
+    	<meta name="csrf-token" content="<%= authenticity_token %>" />
+		<title>Dark Layout | Porto Admin - Responsive HTML5 Template 1.7.0</title>
+		<meta name="keywords" content="HTML5 Admin Template" />
+		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
+		<meta name="author" content="okler.net">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<!-- Web Fonts  -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="<%= assetPath("/vendor/bootstrap/css/bootstrap.css")%>" />
+
+		<link rel="stylesheet" href="<%= assetPath("/vendor/font-awesome/css/font-awesome.css")%>" />
+		<link rel="stylesheet" href="<%= assetPath("/vendor/magnific-popup/magnific-popup.css")%>" />
+		<link rel="stylesheet" href="<%= assetPath("/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css")%>" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="<%= assetPath("/vendor/jquery-ui/jquery-ui.css")%>" />
+		<link rel="stylesheet" href="<%= assetPath("/vendor/jquery-ui/jquery-ui.theme.css")%>" />
+		<link rel="stylesheet" href="<%= assetPath("/vendor/bootstrap-multiselect/bootstrap-multiselect.css")%>" />
+		<link rel="stylesheet" href="<%= assetPath("/vendor/morris.js/morris.css")%>" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="<%= assetPath("/stylesheets/theme.css")%>" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="<%= assetPath("/stylesheets/skins/default.css")%>" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="<%= assetPath("/stylesheets/theme-custom.css")%>">
+
+		<!-- Head Libs -->
+		<script src="<%= assetPath("/vendor/modernizr/modernizr.js")%>"></script>
+
+	</head>
+	<body>
+		<section class="body">
+
+			<!-- start: header -->
+			<%= partial("topbar.plush.html") %>
+			
+			<!-- end: header -->
+
+			<div class="inner-wrapper">
+				<!-- start: sidebar -->
+			<%= partial("left-sidebar.plush.html") %>
+				
+				<!-- end: sidebar -->
+				<%= yield  %>
+			
+			</div>
+
+			<%= partial("right-sidebar.plush.html") %>
+
+		</section>
+
+		<!-- Vendor -->
+		<script src="<%= assetPath("vendor/jquery/jquery.js") %>"></script>
+		<script src="<%= assetPath("vendor/jquery-browser-mobile/jquery.browser.mobile.js") %>"></script>
+		<script src="<%= assetPath("vendor/bootstrap/js/bootstrap.js") %>"></script>
+		<script src="<%= assetPath("vendor/nanoscroller/nanoscroller.js") %>"></script>
+		<script src="<%= assetPath("vendor/bootstrap-datepicker/js/bootstrap-datepicker.js") %>"></script>
+		<script src="<%= assetPath("vendor/magnific-popup/jquery.magnific-popup.js") %>"></script>
+		<script src="<%= assetPath("vendor/jquery-placeholder/jquery-placeholder.js") %>"></script>
+		
+		<!-- Specific Page Vendor -->
+		<script src="<%= assetPath("vendor/jquery-ui/jquery-ui.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqueryui-touch-punch/jqueryui-touch-punch.js") %>"></script>
+		<script src="<%= assetPath("vendor/jquery-appear/jquery-appear.js") %>"></script>
+		<script src="<%= assetPath("vendor/bootstrap-multiselect/bootstrap-multiselect.js") %>"></script>
+		<script src="<%= assetPath("vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js") %>"></script>
+		<script src="<%= assetPath("vendor/flot/jquery.flot.js") %>"></script>
+		<script src="<%= assetPath("vendor/flot.tooltip/flot.tooltip.js") %>"></script>
+		<script src="<%= assetPath("vendor/flot/jquery.flot.pie.js") %>"></script>
+		<script src="<%= assetPath("vendor/flot/jquery.flot.categories.js") %>"></script>
+		<script src="<%= assetPath("vendor/flot/jquery.flot.resize.js") %>"></script>
+		<script src="<%= assetPath("vendor/jquery-sparkline/jquery-sparkline.js") %>"></script>
+		<script src="<%= assetPath("vendor/raphael/raphael.js") %>"></script>
+		<script src="<%= assetPath("vendor/morris.js/morris.js") %>"></script>
+		<script src="<%= assetPath("vendor/gauge/gauge.js") %>"></script>
+		<script src="<%= assetPath("vendor/snap.svg/snap.svg.js") %>"></script>
+		<script src="<%= assetPath("vendor/liquid-meter/liquid.meter.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/jquery.vmap.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/data/jquery.vmap.sampledata.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/jquery.vmap.world.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/continents/jquery.vmap.africa.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/continents/jquery.vmap.asia.js") %>assets/"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/continents/jquery.vmap.australia.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/continents/jquery.vmap.europe.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/continents/jquery.vmap.north-america.js") %>"></script>
+		<script src="<%= assetPath("vendor/jqvmap/maps/continents/jquery.vmap.south-america.js") %>"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="<%= assetPath("javascripts/theme.js") %>"></script>
+		
+		<!-- Theme Custom -->
+		<script src="<%= assetPath("javascripts/theme.custom.js") %>"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="<%= assetPath("javascripts/theme.init.js") %>"></script>
+
+		<!-- Examples -->
+		<script src="<%= assetPath("javascripts/dashboard/examples.dashboard.js") %>"></script>
+
+	</body>
+</html>

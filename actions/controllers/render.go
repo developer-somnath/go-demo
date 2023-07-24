@@ -1,4 +1,4 @@
-package actions
+package controllers
 
 import (
 	"demo/public"
@@ -12,7 +12,7 @@ var r *render.Engine
 func init() {
 	r = render.New(render.Options{
 		// HTML layout to be used for all HTML requests:
-		HTMLLayout: "application.plush.html",
+		HTMLLayout: "master.plush.html",
 
 		// fs.FS containing templates
 		TemplatesFS: templates.FS(),

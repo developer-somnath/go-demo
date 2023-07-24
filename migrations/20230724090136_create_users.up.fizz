@@ -1,0 +1,11 @@
+create_table("users") {
+	t.Column("id", "integer", {primary: true})
+	t.Column("uuid", "uuid",{"null": true})
+	t.Column("roleId", "integer",  {"null": true})
+	t.Column("firstName", "string",  {"null": true})
+	t.Column("lastName", "string",  {"null": true})
+	t.Column("profileImage", "string",  {"null": true})
+	t.Column("email", "string",  {"null": true})
+	t.Column("password", "string",  {"null": true})
+	t.Timestamps()
+}

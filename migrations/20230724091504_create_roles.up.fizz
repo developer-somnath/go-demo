@@ -1,0 +1,6 @@
+create_table("roles") {
+	t.Column("id", "integer", {primary: true})
+	t.Column("uuid", "uuid",{"null": true})
+	t.Column("name", "string",{"null": true})
+	t.Timestamps()
+}

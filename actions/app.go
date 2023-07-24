@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"sync"
 
-	"demo/locales"
 	"demo/models"
 	"demo/public"
 
@@ -12,10 +11,12 @@ import (
 	"github.com/gobuffalo/buffalo-pop/v3/pop/popmw"
 	"github.com/gobuffalo/envy"
 	"github.com/gobuffalo/middleware/csrf"
-	"github.com/gobuffalo/middleware/forcessl"
 	"github.com/gobuffalo/middleware/i18n"
 	"github.com/gobuffalo/middleware/paramlogger"
-	"github.com/unrolled/secure"
+	"github.com/gorilla/sessions"
+
+	controller "demo/actions/controllers"
+	middleware "demo/actions/middlewares"
 )
 
 // ENV is used to help switch settings based on where the
@@ -44,12 +45,13 @@ var (
 func App() *buffalo.App {
 	appOnce.Do(func() {
 		app = buffalo.New(buffalo.Options{
-			Env:         ENV,
-			SessionName: "_demo_session",
+			Env:          ENV,
+			SessionName:  "_demo_session",
+			SessionStore: sessions.NewCookieStore([]byte("some session secret")),
 		})
 
 		// Automatically redirect to SSL
-		app.Use(forceSSL())
+		// app.Use(forceSSL())
 
 		// Log request parameters (filters apply).
 		app.Use(paramlogger.ParameterLogger)
@@ -63,10 +65,14 @@ func App() *buffalo.App {
 		// Remove to disable this.
 		app.Use(popmw.Transaction(models.DB))
 		// Setup and use translations:
-		app.Use(translations())
+		// app.Use(translations())
+		app.Use(middleware.SessionAuth)
 
-		app.GET("/", HomeHandler)
-
+		AuthController := &controller.Auth{}
+		app.Middleware.Skip(middleware.SessionAuth, AuthController.Index, AuthController.UserCheck)
+		app.GET("/login", AuthController.Index)
+		app.POST("/user-check", AuthController.UserCheck)
+		app.GET("/", controller.DashboardHandler)
 		app.ServeFiles("/", http.FS(public.FS())) // serve files from the public directory
 	})
 
@@ -77,22 +83,22 @@ func App() *buffalo.App {
 // and will return a middleware to use to load the correct locale for each
 // request.
 // for more information: https://gobuffalo.io/en/docs/localization
-func translations() buffalo.MiddlewareFunc {
-	var err error
-	if T, err = i18n.New(locales.FS(), "en-US"); err != nil {
-		app.Stop(err)
-	}
-	return T.Middleware()
-}
+// func translations() buffalo.MiddlewareFunc {
+// 	var err error
+// 	if T, err = i18n.New(locales.FS(), "en-US"); err != nil {
+// 		app.Stop(err)
+// 	}
+// 	return T.Middleware()
+// }
 
 // forceSSL will return a middleware that will redirect an incoming request
 // if it is not HTTPS. "http://example.com" => "https://example.com".
 // This middleware does **not** enable SSL. for your application. To do that
 // we recommend using a proxy: https://gobuffalo.io/en/docs/proxy
 // for more information: https://github.com/unrolled/secure/
-func forceSSL() buffalo.MiddlewareFunc {
-	return forcessl.Middleware(secure.Options{
-		SSLRedirect:     ENV == "production",
-		SSLProxyHeaders: map[string]string{"X-Forwarded-Proto": "https"},
-	})
-}
+// func forceSSL() buffalo.MiddlewareFunc {
+// 	return forcessl.Middleware(secure.Options{
+// 		SSLRedirect:     ENV == "production",
+// 		SSLProxyHeaders: map[string]string{"X-Forwarded-Proto": "https"},
+// 	})
+// }
