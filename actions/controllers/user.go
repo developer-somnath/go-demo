@@ -29,3 +29,7 @@ func (e User) MyProfile(c buffalo.Context) error {
 	c.Set("oldData", user)
 	return c.Render(http.StatusOK, r.HTML("pages/my-profile.plush.html"))
 }
+
+func (e User) UpdateProfile(c buffalo.Context) error {
+	return nil
+}

@@ -75,6 +75,7 @@ func App() *buffalo.App {
 		app.POST("/user-check", AuthController.UserCheck)
 		app.GET("/", controller.DashboardHandler)
 		app.GET("/my-profile", UserController.MyProfile)
+		app.POST("/update-profile", UserController.UpdateProfile)
 		app.ServeFiles("/", http.FS(public.FS())) // serve files from the public directory
 	})
 
