@@ -11,17 +11,17 @@ import (
 
 // User is used by pop to map your users database table to your go code.
 type User struct {
-	ID           int       `json:"id" db:"id"`
+	ID           int        `json:"id" db:"id"`
 	UUID         *uuid.UUID `json:"uuid" db:"uuid"`
-	RoleId       int       `json:"roleId" db:"roleId"`
-	Role         *Role     `json:"role,omitempty" belongs_to:"role" fk_id:"id"`
-	FirstName    *string   `json:"firstName" db:"firstName"`
-	LastName     *string   `json:"lastName" db:"lastName"`
-	ProfileImage *string   `json:"profileImage" db:"profileImage"`
-	Email        *string   `json:"email" db:"email"`
-	Password     *string   `json:"password" db:"password"`
-	CreatedAt    time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt    time.Time `json:"updated_at" db:"updated_at"`
+	RoleId       int        `json:"roleId" db:"roleId"`
+	Role         *Role      `json:"role,omitempty" belongs_to:"role" fk_id:"id"`
+	FirstName    *string    `json:"firstName" db:"firstName"`
+	LastName     *string    `json:"lastName" db:"lastName"`
+	ProfileImage *string    `json:"profileImage" db:"profileImage"`
+	Email        *string    `json:"email" db:"email"`
+	Password     *string    `json:"password" db:"password"`
+	CreatedAt    time.Time  `json:"created_at" db:"created_at"`
+	UpdatedAt    time.Time  `json:"updated_at" db:"updated_at"`
 }
 
 // String is not required by pop and may be deleted

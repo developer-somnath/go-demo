@@ -69,10 +69,12 @@ func App() *buffalo.App {
 		app.Use(middleware.SessionAuth)
 
 		AuthController := &controller.Auth{}
+		UserController := &controller.User{}
 		app.Middleware.Skip(middleware.SessionAuth, AuthController.Index, AuthController.UserCheck)
 		app.GET("/login", AuthController.Index)
 		app.POST("/user-check", AuthController.UserCheck)
 		app.GET("/", controller.DashboardHandler)
+		app.GET("/my-profile", UserController.MyProfile)
 		app.ServeFiles("/", http.FS(public.FS())) // serve files from the public directory
 	})
 

@@ -41,7 +41,7 @@
 
 		<!-- Head Libs -->
 		<script src="<%= assetPath("/vendor/modernizr/modernizr.js")%>"></script>
-
+		<%#contentOf("extraStyle") %>
 	</head>
 	<body>
 		<section class="body">
@@ -111,6 +111,8 @@
 
 		<!-- Examples -->
 		<script src="<%= assetPath("javascripts/dashboard/examples.dashboard.js") %>"></script>
+		<script src="<%= assetPath("custom/common.js") %>"></script>
 
+		<%= contentOf("extraScript") %>
 	</body>
 </html>

@@ -1,0 +1,128 @@
+<section role="main" class="content-body">
+    <header class="page-header">
+        <h2>User Profile</h2>
+    
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Pages</span></li>
+                <li><span>User Profile</span></li>
+            </ol>
+    
+            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+        </div>
+    </header>
+
+    <!-- start: page -->
+
+    <div class="row">
+        <div class="col-md-4 col-lg-4">
+
+            <section class="panel">
+                <!-- Input element for image upload -->
+                <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+                <div class="panel-body" id="profileImageContainer">
+                    <div class="thumb-info mb-md" onclick="openProfileImageUpload()">
+                        <img src="/assets/images/!logged-user.jpg" class="rounded img-responsive" alt="John Doe">
+                        <div class="thumb-info-title">
+                            <span class="thumb-info-inner">John Doe</span>
+                            <span class="thumb-info-type">CEO</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-8 col-lg-8">
+               <form class="form-horizontal" method="get">
+                            <h4 class="mb-xlg">Personal Information</h4>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileFirstName">First Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="profileFirstName" value="<%=oldData.FirstName%>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileLastName">Last Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="profileLastName" value="<%=oldData.LastName%>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileEmail">Email</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="profileEmail" value="<%=oldData.Email%>" readonly>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            
+                            <hr class="dotted tall">
+                            <h4 class="mb-xlg">Change Password</h4>
+                            <fieldset class="mb-xl">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="oldPassword">Old Password</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="oldPassword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileNewPassword">New Password</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="profileNewPassword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileNewPasswordRepeat">Repeat New Password</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="profileNewPasswordRepeat">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+            
+        </div>
+       
+
+    </div>
+    <!-- end: page -->
+</section>
+<% contentFor("extraScript") { %>
+<script>
+    // JavaScript function to trigger the file input when the profile image is clicked
+    function openProfileImageUpload() {
+        // Trigger the click event on the hidden file input element
+        document.getElementById('profileImageInput').click();
+    }
+
+    // JavaScript code to handle the selected file when the user chooses an image
+    document.getElementById('profileImageInput').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            // Here, you can handle the uploaded file as needed, e.g., display a preview or send it to the server for processing.
+            // For example, to display a preview of the selected image:
+            const profileImageContainer = document.getElementById('profileImageContainer');
+            const image = profileImageContainer.querySelector('img');
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                image.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+<% } %>

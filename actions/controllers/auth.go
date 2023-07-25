@@ -20,6 +20,9 @@ var BlankArray = []interface{}{}
 var errRecordNotFound = errors.New("record not found")
 
 func (e Auth) Index(c buffalo.Context) error {
+	if _, ok := c.Session().Get("UserId").(string); ok {
+		return c.Redirect(302, "/")
+	}
 	// Render the "log-in.plush.html" template using c.Render with r.HTML.
 	return c.Render(http.StatusOK, r.HTML("pages/log-in.plush.html", "before-login.plush.html"))
 }
