@@ -1,3 +1,5 @@
+<% contentFor("extraStyle") { %>
+<% } %>
 <section role="main" class="content-body">
     <header class="page-header">
         <h2>User Profile</h2>
@@ -29,8 +31,8 @@
                     <div class="thumb-info mb-md" onclick="openProfileImageUpload()">
                         <img src="/assets/images/!logged-user.jpg" class="rounded img-responsive" alt="John Doe">
                         <div class="thumb-info-title">
-                            <span class="thumb-info-inner">John Doe</span>
-                            <span class="thumb-info-type">CEO</span>
+                            <span class="thumb-info-inner"><%=oldData.FirstName+" "+oldData.LastName%></span>
+                            <span class="thumb-info-type">Administrator</span>
                         </div>
                     </div>
                 </div>

@@ -3,13 +3,14 @@ package controllers
 import (
 	"net/http"
 
-	// "demo/helpers"
+	"demo/helpers"
 	"demo/models"
 
 	"errors"
 
 	"github.com/gobuffalo/buffalo"
 	// "golang.org/x/crypto/bcrypt"
+	"mime/multipart"
 )
 
 type User struct {
@@ -31,5 +32,12 @@ func (e User) MyProfile(c buffalo.Context) error {
 }
 
 func (e User) UpdateProfile(c buffalo.Context) error {
+	file, err := c.Params().File("file")
+	if err == nil {
+		uploaded , fileUploadError := helpers.UploadFileSingle(file,"uploads/")
+		if fileUploadError != nil {
+			c.Logger().Info("Fetching error.", fileUploadError)
+		}
+	}
 	return nil
 }
