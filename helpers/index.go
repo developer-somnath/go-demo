@@ -4,6 +4,7 @@ import (
 	"io"
 	"mime/multipart"
 	"os"
+	"path/filepath"
 	"strconv"
 )
 
@@ -25,27 +26,26 @@ type UploadResult struct {
 	Err      error
 }
 
-func UploadFileSingle(file *multipart.FileHeader, uploadLocation string) UploadResult {
-	fileName := file.Filename
+func UploadFileSingle(fileHeader *multipart.FileHeader, file io.Reader, uploadLocation string) UploadResult {
+	fileName := fileHeader.Filename
 
 	// Create a new file on the server
-	newFile, err := os.Create(uploadLocation + fileName)
+	uploadsDirectory := filepath.Join("./public", uploadLocation)
+	err := os.MkdirAll(uploadsDirectory, 0777)
 	if err != nil {
 		return UploadResult{FileName: "", Err: err}
-	}
-	defer newFile.Close()
+	} else {
+		newFile, err := os.Create(uploadsDirectory + fileName)
+		if err != nil {
+			return UploadResult{FileName: "", Err: err}
+		}
+		defer newFile.Close()
 
-	// Open the uploaded file for reading
-	uploadedFile, err := file.Open()
-	if err != nil {
-		return UploadResult{FileName: "", Err: err}
-	}
-	defer uploadedFile.Close()
-
-	// Copy the uploaded file data to the new file
-	_, err = io.Copy(newFile, uploadedFile)
-	if err != nil {
-		return UploadResult{FileName: "", Err: err}
+		// Copy the uploaded file data to the new file
+		_, err = io.Copy(newFile, file)
+		if err != nil {
+			return UploadResult{FileName: "", Err: err}
+		}
 	}
 
 	return UploadResult{FileName: fileName, Err: nil}

@@ -39,63 +39,61 @@
             </section>
         </div>
         <div class="col-md-8 col-lg-8">
-               <form class="form-horizontal adminFrm"  data-action="update-profile" method="post" data-class="requiredCheck">
-                            <input type="file" id="profileImageInput" name="profileImage" accept="image/*" style="display: none;">
-                            <h4 class="mb-xlg">Personal Information</h4>
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="firstName">First Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="firstName" name="firstName" value="<%=oldData.FirstName%>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="lastName">Last Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="lastName" name="lastName" value="<%=oldData.LastName%>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="email">Email</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="email" name="email" value="<%=oldData.Email%>" readonly>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            
-                            <hr class="dotted tall">
-                            <h4 class="mb-xlg">Change Password</h4>
-                            <fieldset class="mb-xl">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="oldPassword">Old Password</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="oldPassword" name="oldPassword">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="newPassword">New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="newPassword" name="newPassword">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="newPasswordRepeat">Repeat New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="profileNewPasswordRepeat" name="profileNewPasswordRepeat">
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-md-9 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary">Update</button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-            
+            <form class="form-horizontal adminFrm"  data-action="update-profile" method="post" data-class="requiredCheck">
+                <input type="file" id="profileImageInput" name="profileImage" accept="image/*" style="display: none;">
+                <h4 class="mb-xlg">Personal Information</h4>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="firstName">First Name</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="firstName" name="firstName" value="<%=oldData.FirstName%>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="lastName">Last Name</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="lastName" name="lastName" value="<%=oldData.LastName%>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="email">Email</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="email" name="email" value="<%=oldData.Email%>" readonly>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <hr class="dotted tall">
+                <h4 class="mb-xlg">Change Password</h4>
+                <fieldset class="mb-xl">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="oldPassword">Old Password</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="oldPassword" name="oldPassword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="newPassword">New Password</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newPassword" name="newPassword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="newPasswordRepeat">Repeat New Password</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="profileNewPasswordRepeat" name="profileNewPasswordRepeat">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-9 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
        
 
