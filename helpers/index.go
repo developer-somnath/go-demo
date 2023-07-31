@@ -31,11 +31,14 @@ func UploadFileSingle(fileHeader *multipart.FileHeader, file io.Reader, uploadLo
 
 	// Create a new file on the server
 	uploadsDirectory := filepath.Join("./public", uploadLocation)
-	err := os.MkdirAll(uploadsDirectory, 0777)
-	if err != nil {
-		return UploadResult{FileName: "", Err: err}
+	_, err := os.Stat(uploadsDirectory)
+	if os.IsNotExist(err) {
+		err := os.MkdirAll(uploadsDirectory, 0777)
+		if err != nil {
+			return UploadResult{FileName: "", Err: err}
+		}
 	} else {
-		newFile, err := os.Create(uploadsDirectory + fileName)
+		newFile, err := os.Create(uploadsDirectory + "/" + fileName)
 		if err != nil {
 			return UploadResult{FileName: "", Err: err}
 		}

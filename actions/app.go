@@ -72,6 +72,7 @@ func App() *buffalo.App {
 		UserController := &controller.User{}
 		app.Middleware.Skip(middleware.SessionAuth, AuthController.Index, AuthController.UserCheck)
 		app.GET("/login", AuthController.Index)
+		app.GET("/logout", AuthController.LogOut)
 		app.POST("/user-check", AuthController.UserCheck)
 		app.GET("/", controller.DashboardHandler)
 		app.GET("/my-profile", UserController.MyProfile)

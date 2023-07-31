@@ -43,7 +43,6 @@ func (e User) UpdateProfile(c buffalo.Context) error {
 	oldPassword := c.Request().FormValue("oldPassword")
 	newPassword := c.Request().FormValue("newPassword")
 	newPasswordRepeat := c.Request().FormValue("profileNewPasswordRepeat")
-
 	// Validate form data, perform any necessary checks
 	// Check if the user uploaded a profile image
 	fileHeader, err := c.File("profileImage")
@@ -53,7 +52,6 @@ func (e User) UpdateProfile(c buffalo.Context) error {
 			Filename: fileHeader.Filename,
 			Size:     fileHeader.Size,
 		}
-
 		// Pass the newly created *multipart.FileHeader and the file content to the helpers.UploadFileSingle function
 		file, err := fileHeader.Open()
 		if err != nil {
@@ -67,7 +65,7 @@ func (e User) UpdateProfile(c buffalo.Context) error {
 			}))
 
 		} else {
-			uploaded := helpers.UploadFileSingle(newFileHeader, file, "admin/uploads/profileImages")
+			uploaded := helpers.UploadFileSingle(newFileHeader, file, "admin/uploads/profileImages/")
 			if uploaded.Err != nil {
 				// c.Logger().Error("Error uploading profile image.", uploaded.Err)
 				return c.Render(http.StatusInternalServerError, r.JSON(map[string]interface{}{
@@ -134,7 +132,6 @@ func (e User) UpdateProfile(c buffalo.Context) error {
 			user.Password = &hashedPasswordPointer
 		}
 	}
-
 	// Save the updated user profile in the database
 	err = models.DB.Save(&user)
 	if err != nil {
@@ -148,13 +145,12 @@ func (e User) UpdateProfile(c buffalo.Context) error {
 			"error":    err.Error(),
 		}))
 	}
-
 	// Redirect the user to the profile page or show a success message
 	return c.Render(http.StatusOK, r.JSON(map[string]interface{}{
 		"status":   true,
 		"message":  "Profile updated succefully",
 		"data":     BlankArray,
-		"redirect": "",
+		"redirect": "my-profile",
 		"error":    "",
 	}))
 }

@@ -29,7 +29,7 @@
                 
                 <div class="panel-body" id="profileImageContainer">
                     <div class="thumb-info mb-md" onclick="openProfileImageUpload()">
-                        <img src="/assets/images/!logged-user.jpg" class="rounded img-responsive" alt="John Doe">
+                        <img src="/admin/uploads/profileImages/<%= html.EscapeString(oldData.ProfileImage)%>" class="rounded img-responsive" alt="John Doe">
                         <div class="thumb-info-title">
                             <span class="thumb-info-inner"><%=oldData.FirstName+" "+oldData.LastName%></span>
                             <span class="thumb-info-type">Administrator</span>
@@ -69,19 +69,19 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="oldPassword">Old Password</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="oldPassword" name="oldPassword">
+                            <input type="password" class="form-control" id="oldPassword" name="oldPassword"  autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="newPassword">New Password</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="newPassword" name="newPassword">
+                            <input type="password" class="form-control" id="newPassword" name="newPassword"  autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="newPasswordRepeat">Repeat New Password</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="profileNewPasswordRepeat" name="profileNewPasswordRepeat">
+                            <input type="password" class="form-control" id="profileNewPasswordRepeat" name="profileNewPasswordRepeat"  autocomplete="off">
                         </div>
                     </div>
                 </fieldset>

@@ -68,6 +68,8 @@ func (e Auth) UserCheck(c buffalo.Context) error {
 	session.Set("FirstName", helpers.ValueOrDefault(User.FirstName))
 	session.Set("LastName", helpers.ValueOrDefault(User.LastName))
 	session.Set("RoleId", helpers.IntToString(User.RoleId))
+	session.Set("ProfileImage", helpers.ValueOrDefault(User.ProfileImage))
+
 	uuidString := ""
 	if User.UUID != nil {
 		uuidString = User.UUID.String()
@@ -85,4 +87,14 @@ func (e Auth) UserCheck(c buffalo.Context) error {
 		"redirect": "/",
 		"error":    "",
 	}))
+}
+
+func (e Auth) LogOut(c buffalo.Context) error {
+	// Destroy the session (assuming you're using the default session store)
+	c.Session().Clear()
+	// Optional: You can also save the session to ensure it gets cleared immediately.
+	c.Session().Save()
+	// Redirect the user to the home page or login page
+	// Replace "/login" with the appropriate URL for your application
+	return c.Redirect(302, "/login")
 }
